@@ -1,0 +1,14 @@
+name: CI Básico
+
+on:
+  push:
+    branches:
+      - 'feature-*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
