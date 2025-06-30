@@ -20,6 +20,7 @@ jobs:
       matrix:
         include:
         - language: 'javascript-typescript'
+          build-mode: 'none'
 
     steps:
       - name: Clonar repositorio
@@ -37,6 +38,9 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
       
       - name: Ejecutar análisis CodeQL
         uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"
