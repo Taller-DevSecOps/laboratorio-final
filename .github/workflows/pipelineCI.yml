@@ -7,7 +7,7 @@ on:
 jobs:
   SAST:
     runs-on: ubuntu-lastest
-    step:
+    steps:
     - name: Hola mundo
       run: |
         echo: "hola mundo desde pipeline de sast"
