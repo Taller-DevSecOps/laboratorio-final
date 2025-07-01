@@ -1,0 +1,14 @@
+name: Workflow
+on:
+  push:
+    branches:
+      - feat
+
+jobs:
+  SAST:
+    runs-on: ubuntu-lastest
+    step:
+    - name: Hola mundo
+      run: |
+        echo: "hola mundo desde pipeline de sast"
+        echo: "hola soy un ejemeplo"
