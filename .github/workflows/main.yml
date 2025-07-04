@@ -39,9 +39,11 @@ jobs:
         echo "SonarCloud SAST analysis completed!"
     
     - name: SonarCloud Scan
-      uses: SonarSource/sonarqube-scan-action@v5.0.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        args: >
-          -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+      run: |
+        npx sonarqube-scanner \
+          -Dsonar.projectKey=C11R11_laboratorio-final-devsecops \
+          -Dsonar.organization=c11r11 \
+          -Dsonar.sources=src \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          -Dsonar.branch.name=${{ github.ref_name }}
