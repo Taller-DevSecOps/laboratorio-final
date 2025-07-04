@@ -20,11 +20,9 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-      working-directory: laboratorio-final
       
     - name: Build project
       run: npm run build
-      working-directory: laboratorio-final
 
     - name: Run SonarCloud Analysis
       uses: SonarSource/sonarcloud-github-action@master
