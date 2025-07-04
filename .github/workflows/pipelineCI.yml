@@ -31,6 +31,8 @@ jobs:
         if [ $? -ne 0 ]; then
           echo "Proyecto ya existe en Sonarcloud"
           echo "::set-output name=proyectoExiste::1"
+          curl -X POST -u "${{ secrets.SONAR_TOKEN }}:" 'https://sonarcloud.io/api/project_branches/rename' -d 'name=feat' -d 'project=laboratorio-final'
+
         else
           echo "Proyecto laboratorio-final creado exitosamente en Sonarcloud"
         
