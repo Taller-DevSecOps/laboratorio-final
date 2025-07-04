@@ -1,31 +1,39 @@
 name: Workflow
+name: SonarCloud Analysis
+
 on:
   push:
     branches:
       - feat
 
 jobs:
-  SAST:
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0 # Necesario para el análisis de SonarCloud
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Necesario para análisis completo de SonarCloud
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
+        working-directory: laboratorio-final
 
-    - name: Build project
-      run: npm run build
-      
-    - name: Run SonarCloud Analysis
-      uses: SonarSource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Build project
+        run: npm run build
+        working-directory: laboratorio-final
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: laboratorio-final
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Necesario para los PR
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
