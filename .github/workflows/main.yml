@@ -13,7 +13,8 @@ jobs:
       run: echo "Hello World from GitHub Actions!"
     
     - name: Show current time
-      run: echo "Current time: $(date)"
+      run: |
+        echo "Current time: $(date)"
     
     - name: Show repository info
       run: |
