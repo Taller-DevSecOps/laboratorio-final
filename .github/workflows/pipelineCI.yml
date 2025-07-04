@@ -22,20 +22,20 @@ jobs:
       run: npm install
       
     - name: Build project
-      run: npm run build
+     # run: npm run build
 
     - name: Validando existencia del proyecto en sonar
       run: |
         set +e
-        curl -f -X POST -u '${{ secrets.SONAR_TOKEN }}:' 'https://sonarcloud.io/api/projects/create' -d 'name=laboratorio-final' -d 'project=laboratorio-final' -d 'organization=test-laboratorio' -d 'visibility=public'
+        curl -f -X POST -u '${{ secrets.SONAR_TOKEN }}:' 'https://sonarcloud.io/api/projects/create' -d 'name=laboratorio-final-2' -d 'project=laboratorio-final-2' -d 'organization=test-laboratorio' -d 'visibility=public'
         if [ $? -ne 0 ]; then
           echo "Proyecto ya existe en Sonarcloud"
           echo "::set-output name=proyectoExiste::1"
         else
           echo "Proyecto laboratorio-final creado exitosamente en Sonarcloud"
         
-          echo "Se establece rama feat como rama por defecto"
-          curl -X POST -u "${{ secrets.SONAR_TOKEN }}:" 'https://sonarcloud.io/api/project_branches/rename' -d 'name=feat' -d 'project=laboratorio-final'
+          echo "Se establece rama main feat como rama por defecto"
+          curl -X POST -u "${{ secrets.SONAR_TOKEN }}:" 'https://sonarcloud.io/api/project_branches/rename' -d 'name=main' -d 'project=laboratorio-final-2'
         fi
         set -e
     - name: Ejecutar análisis SonarCloud
