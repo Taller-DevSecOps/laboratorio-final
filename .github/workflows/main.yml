@@ -43,7 +43,7 @@ jobs:
     - name: SonarCloud Scan
       run: |
         npx sonarqube-scanner \
-          -Dsonar.projectKey=c11r11_laboratorio-final-devsecops \
+          -Dsonar.projectKey=C11R11_laboratorio-final-devsecops \
           -Dsonar.projectName=laboratorio-final-devsecops \
           -Dsonar.organization=c11r11 \
           -Dsonar.sources=. \
