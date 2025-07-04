@@ -48,5 +48,6 @@ jobs:
           -Dsonar.organization=c11r11 \
           -Dsonar.sources=. \
           -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
-          -Dsonar.branch.name=main
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          -Dsonar.branch.name=main \
+          -Dsonar.ci.enabled=true
