@@ -1,0 +1,8 @@
+# node_modules y npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/ # caché de npm
+.yarn/ # caché de yarn
+
