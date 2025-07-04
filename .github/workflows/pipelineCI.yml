@@ -28,6 +28,6 @@ jobs:
       uses: SonarSource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: "79eb147d1eb41f85b173de903ebea642454033ff"
+        SONAR_TOKEN: "79eb147d1eb41f85b173de903ebea642454033ffasdasdasdasd"
         SONAR_PROJECT_KEY: 'laboratorio-final'
         SONAR_ORGANIZATION: 'test laboratorio'
