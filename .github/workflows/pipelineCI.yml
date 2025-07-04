@@ -49,7 +49,7 @@ jobs:
             -Dsonar.branch.name=main
     - name: Validando resultado de SonarCloud
       run: |
-          projectKey="laboratorio-final-37777777"
+          projectKey="laboratorio-final-2"
           branchName="main"
       
           issueCount=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
