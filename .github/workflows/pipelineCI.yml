@@ -46,11 +46,11 @@ jobs:
             -Dsonar.sources=./ \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-            -Dsonar.branch.name=main
+            -Dsonar.branch.name=feat
     - name: Validando resultado de SonarCloud
       run: |
           projectKey="laboratorio-final-2"
-          branchName="main"
+          branchName="feat"
       
           issueCount=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
             "https://sonarcloud.io/api/issues/search?componentKeys=${projectKey}&branch=${branchName}&types=VULNERABILITY&severities=BLOCKER,CRITICAL,MAJOR" \
