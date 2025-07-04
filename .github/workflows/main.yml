@@ -27,17 +27,20 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Show analysis completion
+    - name: Debug token (first 10 chars)
       run: |
-        echo "SonarCloud SAST analysis completed!"
+        echo "Token length: ${#SONAR_TOKEN}"
+        echo "Token starts with: ${SONAR_TOKEN:0:10}..."
         echo "Repository: ${{ github.repository }}"
         echo "Branch: ${{ github.ref_name }}"
         echo "Commit: ${{ github.sha }}"
-        echo "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
-        echo "SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}"
+    
+    - name: Show analysis completion
+      run: |
+        echo "SonarCloud SAST analysis completed!"
     
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
+      uses: SonarSource/sonarqube-scan-action@v5.0.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
