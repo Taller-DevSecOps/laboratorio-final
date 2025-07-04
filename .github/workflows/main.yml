@@ -6,18 +6,35 @@ on:
     branches: [ main, develop, feat/*, fix/* ]
 
 jobs:
-  hello-world:
+  sast:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
-    - name: Echo Hello World
-      run: echo "Hello World from GitHub Actions!"
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Important for SonarCloud analysis
     
-    - name: Show current time
-      run: |
-        echo "Current time: $(date)"
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
     
-    - name: Show repository info
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    
+    - name: Show analysis completion
       run: |
+        echo "SonarCloud SAST analysis completed!"
         echo "Repository: ${{ github.repository }}"
         echo "Branch: ${{ github.ref_name }}"
         echo "Commit: ${{ github.sha }}"
