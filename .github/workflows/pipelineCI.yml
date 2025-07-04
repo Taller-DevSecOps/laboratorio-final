@@ -11,4 +11,4 @@ jobs:
     - name: Hola mundo
       run: |
         echo "hola mundo desde pipeline de sast TEST"
-        echo "hola soy un ejemeplo"
+        echo "hola soy un ejemeplo 4"
