@@ -4,3 +4,19 @@ on:
     branches: [ main, develop, feature/* ]
   pull_request:
     branches: [ main, develop, feature/* ]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Echo Hello World
+      run: echo "Hello World from GitHub Actions!"
+    
+    - name: Show current time
+      run: echo "Current time: $(date)"
+    
+    - name: Show repository info
+      run: |
+        echo "Repository: ${{ github.repository }}"
+        echo "Branch: ${{ github.ref_name }}"
+        echo "Commit: ${{ github.sha }}"
